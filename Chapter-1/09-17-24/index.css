@@ -1,0 +1,43 @@
+h1 {
+  color: limegreen;
+  font-family: "Protest Guerrilla";
+}
+
+.container {
+  background-color: yellow;
+  min-height: 500px;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col {
+  background-color: red;
+  min-height: 200px;
+  width: 30%;
+  margin-bottom: 40px;
+}
+/* Tablet View */
+@media (max-width: 768px) {
+  h1 {
+    color: darkorange;
+  }
+
+  .col{
+    width: 45%;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 400px) {
+  h1 {
+    color: blue;
+    font-family: "Courier New", Courier, monospace;
+  }
+  
+  .col{
+    width: 100%;
+  }
+}
