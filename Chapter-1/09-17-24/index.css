@@ -14,7 +14,7 @@ h1 {
 }
 
 .col {
-  background-color: red;
+  background-color: red!important;
   min-height: 200px;
   width: 30%;
   margin-bottom: 40px;
