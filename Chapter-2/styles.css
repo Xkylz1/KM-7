@@ -1,0 +1,16 @@
+body{
+    background-color: white;
+}
+
+p{
+    color: black;
+}
+
+#title{
+
+}
+
+#btn-click-me{
+    color: blue;
+    background-color: yellow;
+}
