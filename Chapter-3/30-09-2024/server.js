@@ -1,6 +1,7 @@
 const fs = require("fs");
 // const http = require("http")
 const express = require("express");
+const { error } = require("console");
 
 const app = express();
 
@@ -61,6 +62,35 @@ app.post("/api/v1/cars", (req, res) => {
       });
     }
   );
+});
+
+app.get("/api/v1/cars/:id", (req, res) => {
+  // select * from fsw2 where id="1" OR NAME = "Yogi"
+  const id = req.params.id;
+  console.log(id);
+
+  //  == equal tanpa memedulikan tipe data, === memedulikan tipe data
+  const car = cars.find((i) => i.id === id);
+
+  // salah satu basic error handling,
+  if (!car) {
+    console.log("ga ada data");
+    return res.status(404).json({
+      status: "Failed",
+      message: `Failed get data this id: ${id}`,
+      isSuccess: false,
+      data: null,
+    });
+  }
+
+  res.status(200).json({
+    status: "Success",
+    message: "Success get car data",
+    isSuccess: true,
+    data: {
+      car: car,
+    },
+  });
 });
 
 // middleware / handler untuk url yang tidak dapat diakses karena memang tidak ada di aplikasi
