@@ -92,39 +92,53 @@ app.get("/api/v1/cars/:id", (req, res) => {
     },
   });
 });
+
 app.patch("api/v1/cars/:id", (req, res) => {
   const id = req.params.id;
-  // UPDATE ... FROM (table) WHERE id=req.params.id
-  console.log(req, body);
+  console.log(req.body); // Fixed logging
+  
+  // Destructure request body
   const { name, year, type } = req.body;
-  const car = cars.find((i) => i.id === id);
-  console.log(car);
+
+  // Find the car by ID
   const carIndex = cars.findIndex((car) => car.id === id);
-  console.log(carIndex);
 
-  // spread operator
-  cars[carIndex] = { ...cars[carIndex], ...req.body };
+  if (carIndex !== -1) {
+    // If the car exists, update its data using the spread operator
+    cars[carIndex] = { ...cars[carIndex], ...req.body };
 
-  fs.writeFile(
-    `${__dirname}/assets/data/cars.json`,
-    JSON.stringify(cars),
-    (err) => {
-      res.status(201).json({
-        status: "Success",
-        message: "Success add new car data",
-        isSuccess: true,
-        data: {
-          car: newCar,
-        },
-      });
-    }
-  );
+    // Write the updated data to the file
+    fs.writeFile(
+      `${__dirname}/assets/data/cars.json`,
+      JSON.stringify(cars),
+      (err) => {
+        if (err) {
+          return res.status(500).json({
+            status: "Error",
+            message: "Failed to update car data",
+          });
+        }
 
-  res.status(404).json({
-    status: "Failed",
-    message: "API not exist !!!",
-  });
+        // Success response
+        res.status(200).json({
+          status: "Success",
+          message: "Car data updated successfully",
+          isSuccess: true,
+          data: {
+            car: cars[carIndex], // Returning the updated car
+          },
+        });
+      }
+    );
+  } else {
+    // Car not found, return a 404 response
+    res.status(404).json({
+      status: "Failed",
+      message: "Car not found",
+    });
+  }
 });
+
 
 // middleware / handler untuk url yang tidak dapat diakses karena memang tidak ada di aplikasi
 // membuat middleware = our own middleware
