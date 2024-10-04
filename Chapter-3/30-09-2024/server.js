@@ -92,6 +92,39 @@ app.get("/api/v1/cars/:id", (req, res) => {
     },
   });
 });
+app.patch("api/v1/cars/:id", (req, res) => {
+  const id = req.params.id;
+  // UPDATE ... FROM (table) WHERE id=req.params.id
+  console.log(req, body);
+  const { name, year, type } = req.body;
+  const car = cars.find((i) => i.id === id);
+  console.log(car);
+  const carIndex = cars.findIndex((car) => car.id === id);
+  console.log(carIndex);
+
+  // spread operator
+  cars[carIndex] = { ...cars[carIndex], ...req.body };
+
+  fs.writeFile(
+    `${__dirname}/assets/data/cars.json`,
+    JSON.stringify(cars),
+    (err) => {
+      res.status(201).json({
+        status: "Success",
+        message: "Success add new car data",
+        isSuccess: true,
+        data: {
+          car: newCar,
+        },
+      });
+    }
+  );
+
+  res.status(404).json({
+    status: "Failed",
+    message: "API not exist !!!",
+  });
+});
 
 // middleware / handler untuk url yang tidak dapat diakses karena memang tidak ada di aplikasi
 // membuat middleware = our own middleware
