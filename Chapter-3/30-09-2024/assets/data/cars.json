@@ -1,34 +1,5 @@
 [
   {
-    "id": "1",
-    "plate": "ABC123",
-    "manufacture": "Toyota",
-    "model": "Camry",
-    "image": "./images/car01.min.jpg",
-    "rentPerDay": 200000,
-    "capacity": 5,
-    "description": "Comfortable interior with modern technology.",
-    "availableAt": "2023-10-01T10:00:00.000Z",
-    "transmission": "Automatic",
-    "available": true,
-    "type": "Sedan",
-    "year": 2023,
-    "options": [
-      "Cruise Control",
-      "Leather Seats",
-      "Bluetooth",
-      "Backup Camera",
-      "Navigation System"
-    ],
-    "specs": [
-      "Hybrid Engine",
-      "Adaptive Cruise Control",
-      "Lane Departure Warning",
-      "Blind Spot Monitoring",
-      "LED Headlights"
-    ]
-  },
-  {
     "id": "2",
     "plate": "XYZ456",
     "manufacture": "Honda",
@@ -261,10 +232,16 @@
     ]
   },
   {},
-  { "model": "Mber" },
-  { "model": "Roar" },
+  {
+    "model": "Mber"
+  },
+  {
+    "model": "Roar"
+  },
   {},
-  { "id": "100" },
+  {
+    "id": "100"
+  },
   {},
   {},
   {}
